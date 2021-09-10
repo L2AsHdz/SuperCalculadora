@@ -2,7 +2,6 @@ document.querySelector("#operar").addEventListener("click", () => {
     let num1 = document.querySelector('#numero1').value;
     let num2 = document.querySelector('#numero2').value;
     let operacion = document.querySelector("#operacion");
-    console.log(!validarForm(num1, num2, operacion.value));
     if (!validarForm(num1, num2, operacion.value)) {
         switch (operacion.value) {
             case '1': {console.log('Suma');}break;
