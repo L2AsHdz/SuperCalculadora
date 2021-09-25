@@ -1,2 +1,3 @@
 /.vscode
-/node_modules
+/calc/node_modules
+/api/node_modules

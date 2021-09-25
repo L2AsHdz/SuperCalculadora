@@ -21,6 +21,4 @@ routes.use((req, res, next) => {
     res.status(404).sendFile(path.join(__dirname, '../views/404.html'));
 });
 
-routes.use
-
 module.exports = routes;
