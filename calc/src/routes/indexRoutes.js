@@ -2,7 +2,7 @@ const express = require('express');
 const routes = express.Router();
 const path = require('path');
 
-routes.get('/app', (req, res) => {
+routes.get('/', (req, res) => {
     res.status(201);
     res.render('index');
 });

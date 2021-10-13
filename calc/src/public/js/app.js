@@ -5,7 +5,7 @@ document.querySelector("#operar").addEventListener("click", () => {
     if (!validarForm(num1, num2, operacion.value)) {
         switch (operacion.value) {
             case '1': {
-                console.log('Suma');
+                suma(num1, num2);
             } break;
             case '2': {console.log('Resta');}break;
             case '3': {console.log('Multiplicacion');}break;
@@ -14,6 +14,16 @@ document.querySelector("#operar").addEventListener("click", () => {
         }
     }
 });
+
+const suma = async (num1, num2) => {
+    const resp = await axios.post('http://localhost:3001/api/operacion', JSON.stringify({
+        operacion: 'suma',
+        op1: num1,
+        op2: num2
+    }));
+
+    console.log(resp.data);
+};
 
 
 let validarForm = (num1, num2, operacion) => {

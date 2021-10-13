@@ -20,6 +20,15 @@ services:
       - ./calc/src:/app/calc/src
       - ./calc/package.json:/app/calc/package.json
 
+  worker:
+    build:
+      dockerfile: Dockerfile
+      context: ./worker
+    image: worker:1.0
+    volumes:
+      - ./worker/src:/app/worker/src
+      - ./worker/package.json:/app/worker/package.json
+
   nginx:
     depends_on:
       - app
@@ -31,3 +40,4 @@ services:
     image: mi-nginx:1.0
     ports:
       - "3000:80"
+
