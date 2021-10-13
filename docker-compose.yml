@@ -1,0 +1,33 @@
+version: '3.9'
+
+services:
+  api:
+    build:
+      dockerfile: Dockerfile
+      context: ./api
+    image: api:1.0
+    volumes:
+      - ./api/src:/app/api/src
+      - ./api/package.json:/app/api/package.json
+
+  app:
+    stdin_open: true
+    build:
+      dockerfile: Dockerfile
+      context: ./calc
+    image: calc:1.0
+    volumes:
+      - ./calc/src:/app/calc/src
+      - ./calc/package.json:/app/calc/package.json
+
+  nginx:
+    depends_on:
+      - app
+      - api
+    restart: always
+    build:
+      dockerfile: Dockerfile
+      context: ./nginx
+    image: mi-nginx:1.0
+    ports:
+      - "3000:80"
