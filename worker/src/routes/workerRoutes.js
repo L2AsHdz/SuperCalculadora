@@ -31,4 +31,11 @@ routes.post('/division', (req, res) => {
     res.json({result: result}).status(200);
 });
 
+routes.post('/potencia', (req, res) => {
+    let op1 = Number.parseFloat(req.body.op1);
+    let op2 = Number.parseFloat(req.body.op2);
+    let result = Math.pow(op1, op2);
+    res.json({result: result}).status(200);
+});
+
 module.exports = routes;

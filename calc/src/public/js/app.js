@@ -1,32 +1,20 @@
-document.querySelector("#operar").addEventListener("click", () => {
-    let num1 = document.querySelector('#numero1').value;
-    let num2 = document.querySelector('#numero2').value;
-    let operacion = document.querySelector("#operacion");
-    if (!validarForm(num1, num2, operacion.value)) {
-        switch (operacion.value) {
-            case '1': {
-                suma(num1, num2);
-            } break;
-            case '2': {console.log('Resta');}break;
-            case '3': {console.log('Multiplicacion');}break;
-            case '4': {console.log('Division');}break;
-            case '5': {console.log('Potencia');}
-        }
-    }
+document.addEventListener("DOMContentLoaded", () => {
+    document.querySelector('#calc').addEventListener('submit', validarFormulario);
 });
 
-const suma = async (num1, num2) => {
-    const resp = await axios.post('http://localhost:3001/api/operacion', JSON.stringify({
-        operacion: 'suma',
-        op1: num1,
-        op2: num2
-    }));
+let validarFormulario = evento => {
+    evento.preventDefault();
+    let num1 = document.querySelector('#numero1').value;
+    let num2 = document.querySelector('#numero2').value;
+    let operacion = document.querySelector('#operacion');
 
-    console.log(resp.data);
-};
+    if (formHasErrors(num1, num2, operacion.value)) {
+        return;
+    }
+    document.forms['calc'].submit();
+}
 
-
-let validarForm = (num1, num2, operacion) => {
+let formHasErrors = (num1, num2, operacion) => {
     let areErrors = false;
     let errNum1 = document.querySelector('#errNum1');
     let errNum2 = document.querySelector('#errNum2');
@@ -52,16 +40,12 @@ let validarForm = (num1, num2, operacion) => {
         areErrors = true;
     }
 
-    if (operacion == 0) {
+    if (isEmpty(operacion)) {
         errOp.innerHTML = 'Debe seleccionar una operacion';
         errOp.classList.remove('d-none');
         areErrors = true;
     }
     return areErrors;
-};
-
-let operar = (op) => {
-    
 };
 
 let isEmpty = s => {
