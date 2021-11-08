@@ -1,13 +1,13 @@
 const webtoken = require('jsonwebtoken');
 const redisManager = require('../model/redisManager');
 const LocalStorage = require('node-localstorage').LocalStorage;
-localStorage = new LocalStorage('./scratch');
+const localStorage = new LocalStorage('./scratch');
 
 const tokensecret = process.env.SECRET_TOKEN;
 
 module.exports.signToken = id => {
     return webtoken.sign({ id }, tokensecret, {
-        expiresIn: 120 ,
+        expiresIn: 3600 ,
     });
 }
 

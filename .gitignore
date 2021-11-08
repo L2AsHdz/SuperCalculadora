@@ -1,3 +1,4 @@
 /.vscode
 /calc/node_modules
 /api/node_modules
+/worker/node_modules

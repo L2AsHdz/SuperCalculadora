@@ -4,7 +4,7 @@ const redisManager = require('../model/redisManager');
 const authenticated = require('../auth/checkToken');
 const routes = express.Router();
 const LocalStorage = require('node-localstorage').LocalStorage;
-localStorage = new LocalStorage('./scratch');
+const localStorage = new LocalStorage('./scratch');
 
 routes.use(express.urlencoded());
 

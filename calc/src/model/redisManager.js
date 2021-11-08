@@ -37,3 +37,30 @@ module.exports.getUser = email => {
         });
     });
 };
+
+module.exports.insertOP = async (usuario, operacion) => {
+    let usr = await this.getUser(usuario);
+    return new Promise((resolve, reject) => {
+        if (usr) {
+            let llave = `history-${usuario}`;
+            console.log('llave: ', llave, '\noperacion: ', operacion);
+            resolve(client.sadd(llave, operacion));
+        } else {
+            reject('Error al guardar operacion');
+        }
+    });
+};
+
+module.exports.getHistory = (user) => {
+    return new Promise((resolve, reject) => {
+        let llave = `history-${user}`;
+            console.log('llave: ', llave);
+        client.smembers(llave, (error, history) => {
+            if (error) {
+                reject(0);
+            } else {
+                resolve(history);
+            }
+        });
+    })
+};
