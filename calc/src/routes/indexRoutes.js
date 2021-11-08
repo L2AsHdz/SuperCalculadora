@@ -3,12 +3,23 @@ const axios = require('axios');
 const { stringify } = require('querystring');
 const routes = express.Router();
 const path = require('path');
+const authenticated = require('../auth/checkToken');
 
 routes.use(express.urlencoded());
 
-routes.get('/', (req, res) => {
+routes.get('/index', (req, res) => {
     res.status(201);
-    res.render('index');
+    res.render('index', {resultado: 'null'});
+});
+
+routes.get('/login', (req, res) => {
+    res.status(201);
+    res.render('login');
+});
+
+routes.get('/signUp', (req, res) => {
+    res.status(201);
+    res.render('register');
 });
 
 routes.get('/about', (req, res) => {
@@ -16,12 +27,12 @@ routes.get('/about', (req, res) => {
     res.render('about');
 });
 
-routes.get('/historial', (req, res) => {
+routes.get('/historial', authenticated.checkToken, (req, res) => {
     res.status(201);
     res.render('historial');
 });
 
-routes.post('/operar', async (req, res) => {
+routes.post('/operar', authenticated.checkToken, async (req, res) => {
     let op1 = Number.parseFloat(req.body.numero1);
     let op2 = Number.parseFloat(req.body.numero2);
     let operacion = req.body.operacion;
@@ -34,14 +45,11 @@ routes.post('/operar', async (req, res) => {
 
     const resp = await axios.post('http://api:3001/api/operacion', data);
     try {
-        res.json(resp.data).status(200);
+        console.log(resp.data.result.toString());
+        res.status(200).render('index', {resultado: resp.data.result.toString()});
     } catch (error) {
         console.log(error);
     }
-});
-
-routes.use((req, res, next) => {
-    res.status(404).sendFile(path.join(__dirname, '../views/404.html'));
 });
 
 module.exports = routes;

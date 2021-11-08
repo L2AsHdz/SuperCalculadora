@@ -48,9 +48,16 @@
                             </div>
                             <button type="submit" class="btn btn-primary btn-block mt-3" id="operar">Operar</button>
                         </form>
+                        <br>
+                        <% if(resultado == 'null'){ %>
+                        <% } else{ %>
+                            <div class="alert alert-success" role="alert">
+                                El resultado es : <%=resultado%>
+                            </div>
+                        <% } %>
                     </div>
                 </div>
-            </div>
+            </>
         </div>
     </div>
 

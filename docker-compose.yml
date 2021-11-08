@@ -1,6 +1,9 @@
 version: '3.9'
 
 services:
+  redis:
+    image: redis:latest
+
   api:
     build:
       dockerfile: Dockerfile
@@ -12,6 +15,8 @@ services:
 
   app:
     stdin_open: true
+    depends_on:
+      - worker
     build:
       dockerfile: Dockerfile
       context: ./calc
@@ -19,6 +24,10 @@ services:
     volumes:
       - ./calc/src:/app/calc/src
       - ./calc/package.json:/app/calc/package.json
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - SECRET_TOKEN=abcdefgh12345678
 
   worker:
     build:
@@ -40,5 +49,5 @@ services:
       context: ./nginx
     image: mi-nginx:1.0
     ports:
-      - "3000:80"
+      - "4000:80"
 

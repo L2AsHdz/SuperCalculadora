@@ -1,7 +1,7 @@
 const express = require('express');
-const { appendFile } = require('fs');
 const path = require('path');
 const routes = require('./routes/indexRoutes');
+const loginRoutes = require('./routes/loginRoutes');
 const server = express();
 
 //Configurando puerto
@@ -21,7 +21,12 @@ server.use((req, res, next) => {
 server.use(express.static(path.join(__dirname, 'public')));
 
 //Routes
+server.use(loginRoutes);
 server.use(routes);
+
+routes.use((req, res, next) => {
+    res.status(404).sendFile(path.join(__dirname, './views/404.html'));
+});
 
 //Start server
 server.listen(server.get('port'), () => {

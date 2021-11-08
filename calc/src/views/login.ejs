@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Super Calculadora</title>
+    <%- include('partials/header.ejs'); %>
+        <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <div id="bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 offset-md-4 text-dark">
+                    <div class="login-form bg-light mt-5 p-4">
+                        <form class="row g-3" action="/signIn" method="POST">
+                            <h3><strong>Bienvenido</strong></h3>
+                            <div class="col-12">
+                                <label>*Email</label>
+                                <input type="text" name="email" class="form-control bg-white text-black"
+                                    placeholder="Email">
+                            </div>
+                            <div class="col-12">
+                                <label>*Password</label>
+                                <input type="password" name="pass" class="form-control bg-white text-black"
+                                    placeholder="password">
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-dark float-end">Iniciar sesion</button>
+                            </div>
+                        </form>
+                        <hr class="mt-4">
+                        <div class="col-12">
+                            <p class="text-center mb-0">No tienes una cuenta? <a class="text-info" href="http://localhost:4000/signUp"><strong>Registrate!</strong></a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%- include('partials/extrasJS.ejs'); %>
+</body>
+
+</html>

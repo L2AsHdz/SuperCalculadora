@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Super Calculadora</title>
+    <%- include('partials/header.ejs'); %>
+        <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+<div class="container mt-2 col-md-6">
+    <div class="card my-4">
+        <div class="card-header">
+            <strong><h3>Registrarse como usuario</h3></strong>
+        </div>
+        <div class="card-body">
+            <form action="/register" method="POST">
+                <div class="row py-2">
+                    <div class="col-8">
+                        <div class="form-group">
+                            <label for="email">*Email:</label>
+                            <input type="text" class="form-control" name="email" required>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label for="pass">*Password:</label>
+                            <input type="password" class="form-control" name="pass" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-success mt-2" >Registrarme!</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<%- include('partials/extrasJS.ejs'); %>
+</body>
+
+</html>
