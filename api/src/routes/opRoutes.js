@@ -15,7 +15,7 @@ const test = async (req, res) => {
         op2: op2
     });
 
-    const resp = await axios.post(`http://localhost:3002/${operacion}`, data);
+    const resp = await axios.post(`http://worker:3002/${operacion}`, data);
     try {
         res.json(resp.data).status(200);
     } catch (error) {

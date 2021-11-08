@@ -32,7 +32,7 @@ routes.post('/operar', async (req, res) => {
         operacion: operacion
     });
 
-    const resp = await axios.post('http://localhost:3001/api/operacion', data);
+    const resp = await axios.post('http://api:3001/api/operacion', data);
     try {
         res.json(resp.data).status(200);
     } catch (error) {

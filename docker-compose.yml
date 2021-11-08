@@ -33,6 +33,7 @@ services:
     depends_on:
       - app
       - api
+      - worker
     restart: always
     build:
       dockerfile: Dockerfile
